@@ -1,30 +1,8 @@
 import React, { useContext, useEffect } from 'react'
-import styled from 'styled-components'
-import {Card, Col, Pagination, Row} from "antd";
+import {Pagination, Row} from "antd";
 import {ContextApp} from "../../StoreContext";
 import { WrapperStyles } from "../../App";
 import {CardBeer} from "../CardBeer";
-
-const ImageContainerStyles = styled.div`
-  text-align: center;
-  margin-bottom: 20px;
-  img {
-    max-height: 300px;
-  }
-`
-
-const TitleContainerStyles = styled.div`
-  font-size: 14px;
-  font-weight: bold;
-`
-
-const TagGrayStyles = styled.div`
-  color: gray;
-  font-size: 12px;
-`
-const DateStyles = styled.div`
-  font-size: 12px;
-`
 
 const BeerList = () => {
   const { actions, state } = useContext(ContextApp)
@@ -35,22 +13,19 @@ const BeerList = () => {
     return item.name.toLowerCase().indexOf(state.searchValue) !== -1
   } )
 
-  const filtered = searched ? searched.filter( item => {
-    if (state.filterValue.value) {
-      if (state.filterValue.more) {
+  const EqualFilter = (data, item) => {
+    if (data) {
+      if (data) {
         return item.abv > state.filterValue.value
       }
       return item.abv < state.filterValue.value
     }
-  } ) : state.beers && state.beers( item => {
-    if (state.filterValue.value) {
-      if (state.filterValue.more) {
-        return item.abv > state.filterValue.value
-      }
-      return item.abv < state.filterValue.value
-    }
-  } )
+  }
+
+  const filtered = searched ? searched.filter( item => EqualFilter(state.filterValue.value, item) )
+    : state.beers && state.beers( item => EqualFilter(state.filterValue.value, item) )
   console.log(searched, filtered, state.beers)
+
   return (
     <WrapperStyles>
       <Row gutter={[16,16]}>

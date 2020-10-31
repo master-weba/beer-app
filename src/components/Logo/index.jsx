@@ -1,4 +1,4 @@
-import logo from '../../logo.jpg'
+import React from 'react'
 import styled from 'styled-components'
 
 const LogoStyles = styled.h1`
