@@ -1,7 +1,6 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import {Card, Col} from "antd";
 import styled from "styled-components";
-import {ContextApp} from "../../StoreContext";
 
 const ImageContainerStyles = styled.div`
   text-align: center;
