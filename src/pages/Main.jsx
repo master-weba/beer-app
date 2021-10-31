@@ -9,11 +9,11 @@ import {FilterContainer} from "../components/FilterContainer";
 
 const Header = styled.header`
   background: #282c34;
-  padding: 20px 0;
+  padding: 30px 0;
 `
 
 const Content = styled.main`
-  padding: 30px 0;
+  padding: 40px 0;
   background: #f3f7fc;
 `
 
